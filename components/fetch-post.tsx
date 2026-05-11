@@ -1,9 +1,9 @@
 import React from 'react'
-
+import LikeButton from './like-button'
 const FetchPost = async ({ params }: { params: Promise<{ id: string }> }) => {
     const { id } = await params
 
-    const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+    const res = await fetch(`https://dummyjson.com/posts/${id}`, {
         cache: "no-store",
     })
     
@@ -19,7 +19,8 @@ const FetchPost = async ({ params }: { params: Promise<{ id: string }> }) => {
                 <div className='flex flex-col p-3 gap-5'>
                     <h2 className='text-xl font-bold text-gray-200'>{post.title}</h2>
                     <p className=' text-gray-50'>{post.body}</p>
-                </div>
+                </div> 
+                <LikeButton />
         </div>
     )
 }
