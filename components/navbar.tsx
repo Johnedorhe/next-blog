@@ -10,6 +10,7 @@ const Navbar = () => {
     const NavLinks = [
         {name: 'Home', href: '/'},
         {name: 'Posts', href: '/posts'},
+        {name: 'Add Post', href: '/add-post'},
     ]
 
   return (
