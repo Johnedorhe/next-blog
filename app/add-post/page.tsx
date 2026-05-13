@@ -20,7 +20,7 @@ const Page = async () => {
       <form action={handleSubmit} className="space-y-4">
         <Input name="title" placeholder="Enter title" required />
         <Textarea 
-          name="postContent" 
+          name="content" 
           placeholder="Enter post content" 
           required 
           className="min-h-50"
