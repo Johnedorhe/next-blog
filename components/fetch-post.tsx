@@ -1,6 +1,7 @@
 import React from 'react'
 import LikeButton from './like-button'
 import prisma from "@/lib/prisma";
+import { notFound } from 'next/navigation';
 
 const FetchPost = async ({ params }: { params: Promise<{ id: string }> }) => {
     const { id } = await params
@@ -10,7 +11,7 @@ const FetchPost = async ({ params }: { params: Promise<{ id: string }> }) => {
     })
     
     if (!post) {
-        throw new Error('Post not found')
+        notFound()
     }
 
     return (
