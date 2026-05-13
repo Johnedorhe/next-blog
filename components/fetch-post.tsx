@@ -1,24 +1,24 @@
 import React from 'react'
 import LikeButton from './like-button'
+import prisma from "@/lib/prisma";
+
 const FetchPost = async ({ params }: { params: Promise<{ id: string }> }) => {
     const { id } = await params
 
-    const res = await fetch(`https://dummyjson.com/posts/${id}`, {
-        cache: "no-store",
+    const post = await prisma.post.findUnique({
+        where: { id: parseInt(id) }
     })
     
-    if (!res.ok) {
-        throw new Error('Failed to fetch posts')
+    if (!post) {
+        throw new Error('Post not found')
     }
-
-    const post: { id: number; title: string; body: string } = await res.json()
 
     return (
         <div>
-            <h1 className='text-2xl font-semibold text-center'>All Posts</h1>
+            <h1 className='text-2xl font-semibold text-center'>Post Details</h1>
                 <div className='flex flex-col p-3 gap-5'>
                     <h2 className='text-xl font-bold text-gray-200'>{post.title}</h2>
-                    <p className=' text-gray-50'>{post.body}</p>
+                    <p className=' text-gray-50'>{post.content}</p>
                 </div> 
                 <LikeButton />
         </div>
